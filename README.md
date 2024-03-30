@@ -1,30 +1,67 @@
-# WhisperTranscriber
+# Cantonese Speech Recognition with Whisper
 
-WhisperTranscribe is a service for local audio transcription based on OpenAI's Whisper model. It allows users to upload audio files and return transcripts through a REST API interface. It is designed for scenarios that need to process their own data sets, ensuring data privacy and security.
+## Project Overview
 
-## Features
+This project leverages the Whisper model for speech recognition, focusing on the Cantonese language. It is designed to transcribe Cantonese audio files into text, enhancing the accessibility and usability of speech recognition technologies for Cantonese speakers. Due to privacy concerns, our specific dataset is not included in this repository. Users are encouraged to use their own datasets by placing audio files in the designated data folder.
 
-- **Local Deployment**: Ensures that all audio processing work is done in the user's private environment.
-- **REST API interface**: Provides a simple and easy-to-use API to facilitate users to upload files and receive transcription results.
-- **Custom dataset support**: Allows users to use personal or professional datasets for transcription, improving transcription quality and adaptability.
+## Getting Started
 
-## Quick start
-
-This section will guide you how to deploy and run LocalWhisperTranscriber locally.
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. Follow these simple steps to start transcribing Cantonese audio files.
 
 ### Prerequisites
 
-Before you begin, make sure you have the following software installed on your system:
+Before installing the project, make sure you have Python and pip installed on your system. This project uses Flask to run the local API server, and it requires other dependencies listed in the `requirements.txt` file.
 
-- Python 3.10 or higher
+### Installation
 
+- **Clone the Project**
 
-### Installation steps
+   Start by cloning the repository to your local machine:
 
-1. **Clone repository**
+   ```bash
+   git clone git@github.com:david188888/WhisperTranscriber.git
+   cd WhisperTranscriber
+   ```
+- **Install Dependencies**
 
-    Open a terminal and run the following command to clone the project locally:
+   Install the required dependencies using pip:
+
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+- **Prepare the Data**
+
+   Place your Cantonese audio files in the `data` folder. The audio files should be in `.wav` or `.mp3` format.
+
+- **Import the Whisper-Middle model**
+    ```
+    The model.safetensors file containing the model's parameters and data is not included due to its size. Follow the steps in proposs_model.md to import the model from Hugging Face Hub.
+    ```
+
+- **Run the Transcriber Service**
+
+- **Running the API Server**
+
+    #### Start the Flask server to transcribe Cantonese audio files:
 
     ```bash
-    git clone https://github.com/yourusername/LocalWhisperTranscribe.git
-    cd LocalWhisperTranscriber
+    uvicorn request:app --reload --host 127.0.0.1 --port 8010
+    ```
+    1. #### Send a POST request to the API server with the audio file to transcribe:
+
+        ```bash
+        curl -X POST -F "file=@data/your_audio_file.wav" http://127.0.0.1:8010/transcribe/
+        ```
+    2.  #### Using the Python Script:
+        ```bash
+        python upload_audio_files.py
+        ```
+### **Acknowledgements**
+
+   - OpenAI for providing the Whisper model.
+   - Hugging Face for hosting the Whisper model on their model hub.
+
+
+
+   
