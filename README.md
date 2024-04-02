@@ -41,21 +41,15 @@ Before installing the project, make sure you have Python and pip installed on yo
 
 - **Run the Transcriber Service**
 
-- **Running the API Server**
-
-    #### Start the Flask server to transcribe Cantonese audio files:
-
-    ```bash
-    uvicorn request:app --reload --host 127.0.0.1 --port 8010
-    ```
+- **Post the audio file to api on the server**
     1. #### Send a POST request to the API server with the audio file to transcribe:
 
         ```bash
-        curl -X POST -F "file=@data/your_audio_file.wav" http://127.0.0.1:8010/transcribe/
+        curl -X POST -F "file=@path_to_your_file.wav" http://whisper.kirisame.cc:8010/transcribe
         ```
     2.  #### Using the Python Script:
         ```bash
-        python upload_audio_files.py
+        python api_post.py
         ```
 ### **Acknowledgements**
 
